@@ -1,0 +1,12 @@
+C:\Users\Leonardo Cavichiolli\OneDrive\APIDemo\APIMovie.Domain\bin\Debug\net6.0\APIMovie.Domain.deps.json
+C:\Users\Leonardo Cavichiolli\OneDrive\APIDemo\APIMovie.Domain\bin\Debug\net6.0\APIMovie.Domain.dll
+C:\Users\Leonardo Cavichiolli\OneDrive\APIDemo\APIMovie.Domain\bin\Debug\net6.0\APIMovie.Domain.pdb
+C:\Users\Leonardo Cavichiolli\OneDrive\APIDemo\APIMovie.Domain\obj\Debug\net6.0\APIMovie.Domain.csproj.AssemblyReference.cache
+C:\Users\Leonardo Cavichiolli\OneDrive\APIDemo\APIMovie.Domain\obj\Debug\net6.0\APIMovie.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Leonardo Cavichiolli\OneDrive\APIDemo\APIMovie.Domain\obj\Debug\net6.0\APIMovie.Domain.AssemblyInfoInputs.cache
+C:\Users\Leonardo Cavichiolli\OneDrive\APIDemo\APIMovie.Domain\obj\Debug\net6.0\APIMovie.Domain.AssemblyInfo.cs
+C:\Users\Leonardo Cavichiolli\OneDrive\APIDemo\APIMovie.Domain\obj\Debug\net6.0\APIMovie.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Leonardo Cavichiolli\OneDrive\APIDemo\APIMovie.Domain\obj\Debug\net6.0\APIMovie.Domain.dll
+C:\Users\Leonardo Cavichiolli\OneDrive\APIDemo\APIMovie.Domain\obj\Debug\net6.0\refint\APIMovie.Domain.dll
+C:\Users\Leonardo Cavichiolli\OneDrive\APIDemo\APIMovie.Domain\obj\Debug\net6.0\APIMovie.Domain.pdb
+C:\Users\Leonardo Cavichiolli\OneDrive\APIDemo\APIMovie.Domain\obj\Debug\net6.0\ref\APIMovie.Domain.dll

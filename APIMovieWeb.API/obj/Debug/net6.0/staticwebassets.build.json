@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Sdml5ZDqRCZTcAyLOjdVRz9+j3Ei1IN3x1egWbtQfMY=",
+  "Source": "APIMovieWeb.API",
+  "BasePath": "_content/APIMovieWeb.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

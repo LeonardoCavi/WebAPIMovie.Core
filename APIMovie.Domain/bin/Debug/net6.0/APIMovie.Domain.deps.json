@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "APIMovie.Domain/1.0.0": {
+        "runtime": {
+          "APIMovie.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "APIMovie.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
