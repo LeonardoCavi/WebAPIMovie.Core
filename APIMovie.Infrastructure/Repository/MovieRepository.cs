@@ -51,6 +51,12 @@ namespace APIMovie.Infrastructure.Repository
         {
             var movies = _movieDBContext.Movies.Find(id);
 
+            if(movies == null)
+            {
+                movies = null;
+                return movies;
+            }
+
             movies.MovieName = movie.MovieName;
             movies.MovieCost = movie.MovieCost;
             movies.RentalDuration = movie.RentalDuration;
@@ -64,6 +70,13 @@ namespace APIMovie.Infrastructure.Repository
         public Movie DeleteMovie(int id)
         {
             var movies = _movieDBContext.Movies.Find(id);
+
+            if(movies == null)
+            {
+                movies = null;
+                return movies;
+            }
+
             _movieDBContext.Movies.Remove(movies);
             _movieDBContext.SaveChanges();
 

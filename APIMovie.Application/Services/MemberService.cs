@@ -20,7 +20,8 @@ namespace APIMovie.Application.Services
 
         public List<Member> GetMemberById(int id)
         {
-            throw new NotImplementedException();
+            var members = _memberRepository.GetMemberById(id);
+            return members;
         }
 
         public Member CreateMember(Member member)
@@ -30,12 +31,14 @@ namespace APIMovie.Application.Services
         }
         public Member UpdateMember(int id, Member member)
         {
-            throw new NotImplementedException();
+            var members = _memberRepository.UpdateMember(id, member);
+            return members;
         }
 
         public Member DeleteMember(int id)
         {
-            throw new NotImplementedException();
+            var members = _memberRepository.DeleteMember(id);
+            return members;
         }      
     }
 }

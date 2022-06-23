@@ -37,7 +37,7 @@ namespace APIMovieWeb.API.Controllers
             
         }
 
-        [HttpGet("ID")]
+        [HttpGet("MovieID")]
         public ActionResult<List<Movie>> GetMovieById(int id)
         {
             try
@@ -116,7 +116,7 @@ namespace APIMovieWeb.API.Controllers
                 var movieFromService = _movieService.UpdateMovie(id, updateMovie);
                 if (movieFromService == null)
                 {
-                    return BadRequest("Failed to create new movie. Try again later!");
+                    return BadRequest("Failed to update movie. Please check the ID is correct and try again later!");
                 }
 
                 return Ok(movieFromService);
@@ -140,7 +140,7 @@ namespace APIMovieWeb.API.Controllers
                 var movieFromService = _movieService.DeleteMovie(id);
                 if (movieFromService == null)
                 {
-                    return BadRequest("Movie deletion failed. Try again later!");
+                    return BadRequest("Movie deletion failed. Please check the ID is correct and try again later!");
                 }
 
                 return Ok(movieFromService);

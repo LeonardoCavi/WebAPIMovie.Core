@@ -35,6 +35,29 @@ namespace APIMovieWeb.API.Controllers
             }
         }
 
+        [HttpGet("MemberID")]
+        public ActionResult<List<Member>> GetMemberById(int id)
+        {
+            try
+            {
+                if(id < 0)
+                {
+                    return BadRequest("Invalid Member ID.");
+                }
+                var memberFromService = _memberService.GetMemberById(id);
+                if (memberFromService.Count == 0)
+                {
+                    return NotFound("No members found by ID. Register first to consult!");
+                }
+
+                return Ok(memberFromService);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(501, $"Internal Failure. Try again later. Error => {ex}");
+            }
+        }
+
         [HttpPost]
         public ActionResult<Member> CreateMember(MemberDTO member)
         {
@@ -59,6 +82,65 @@ namespace APIMovieWeb.API.Controllers
                 }
 
                 return StatusCode(201, memberFromService);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(501, $"Internal Failure. Try again later. Error => {ex}");
+            }
+        }
+
+        [HttpPut]
+        public ActionResult<Member> UpdateMember(int id, MemberDTO request)
+        {
+            try
+            {
+                if(id < 0)
+                {
+                    return BadRequest("Invalid Member ID.");
+                }
+                else if (request.MemberFirstName == String.Empty || request.MemberLastName == String.Empty || request.MemberEmail == String.Empty)
+                {
+                    return BadRequest("Invalid parameters!");
+                }
+
+                var updateMember = new Member
+                {
+                    MemberFirstName = request.MemberFirstName,
+                    MemberLastName= request.MemberLastName,
+                    MemberEmail = request.MemberEmail
+                };
+
+                var memberFromService = _memberService.UpdateMember(id, updateMember);
+                if(memberFromService == null)
+                {
+                    return BadRequest("Failed to update member. Please check the ID is correct and try again later!");
+                }
+
+                return Ok(memberFromService);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(501, $"Internal Failure. Try again later. Error => {ex}");
+            }
+        }
+
+        [HttpDelete]
+        public ActionResult<Movie> DeleteMember(int id)
+        {
+            try
+            {
+                if (id < 0)
+                {
+                    return BadRequest("Invalid Member ID.");
+                }
+
+                var memberFromService = _memberService.DeleteMember(id);
+                if (memberFromService == null)
+                {
+                    return BadRequest("Member deletion failed. Please check the ID is correct and try again later!");
+                }
+
+                return Ok(memberFromService);
             }
             catch (Exception ex)
             {

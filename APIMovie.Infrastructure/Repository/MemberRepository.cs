@@ -1,6 +1,7 @@
 ﻿using APIMovie.Application.Intefaces;
 using APIMovie.Domain.Models;
 using APIMovie.Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace APIMovie.Infrastructure.Repository
 {
@@ -22,7 +23,9 @@ namespace APIMovie.Infrastructure.Repository
 
         public List<Member> GetAllMembers()
         {
-            var members = _memberDBContext.Members.ToList();
+            var members = _memberDBContext.Members
+                .Include(m => m.Rentals)
+                .ToList();
             return members;
         }
 
@@ -30,6 +33,7 @@ namespace APIMovie.Infrastructure.Repository
         {
             var members = _memberDBContext.Members
                 .Where(m => m.MemberId == id)
+                .Include(m => m.Rentals)
                 .ToList();
 
             return members;
@@ -47,6 +51,12 @@ namespace APIMovie.Infrastructure.Repository
         {
             var members = _memberDBContext.Members.Find(id);
 
+            if(members == null)
+            {
+                members = null;
+                return members;
+            }
+
             members.MemberFirstName = member.MemberFirstName;
             members.MemberLastName = member.MemberLastName;
             members.MemberEmail = member.MemberEmail;
@@ -60,6 +70,13 @@ namespace APIMovie.Infrastructure.Repository
         public Member DeleteMember(int id)
         {
             var members = _memberDBContext.Members.Find(id);
+
+            if (members == null)
+            {
+                members = null;
+                return members;
+            }
+
             _memberDBContext.Members.Remove(members);
             _memberDBContext.SaveChanges();
 

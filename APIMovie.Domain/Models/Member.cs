@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace APIMovie.Domain.Models
 {
@@ -15,6 +16,7 @@ namespace APIMovie.Domain.Models
         public string MemberEmail { get; set; } = string.Empty;
 
         // Linking - Member - Rentals (1:N)
+        [JsonIgnore]
         public List<Rental> Rentals { get; set; }
     }
 }
