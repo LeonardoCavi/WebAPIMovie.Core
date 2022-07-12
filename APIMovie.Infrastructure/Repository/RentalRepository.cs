@@ -1,4 +1,5 @@
 ﻿using APIMovie.Application.Intefaces;
+using APIMovie.Domain.DTO;
 using APIMovie.Domain.Models;
 using APIMovie.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,7 @@ namespace APIMovie.Infrastructure.Repository
         {
             var rentals = _rentalDBContext.Rentals
                 .Include(r => r.Member)
+                .Include(r => r.Movies)
                 .ToList();
 
             return rentals;
@@ -28,6 +30,7 @@ namespace APIMovie.Infrastructure.Repository
             var rentals = _rentalDBContext.Rentals
                 .Where(r => r.RentalId == id)
                 .Include(r => r.Member)
+                .Include(r => r.Movies)
                 .ToList();
 
             return rentals;
@@ -39,6 +42,32 @@ namespace APIMovie.Infrastructure.Repository
             _rentalDBContext.SaveChanges();
 
             return rental;
+        }
+
+        public Rental AddRentalMovie(MovieRentalDTO request)
+        {
+            var rentals = _rentalDBContext.Rentals
+                    .Where(r => r.RentalId == request.RentalId)
+                    .Include(m => m.Movies)
+                    .FirstOrDefault();
+
+            if (rentals == null)
+            {
+                rentals = null;
+                return rentals;
+            }
+
+            var movies = _rentalDBContext.Movies.Find(request.MovieId);
+            if (movies == null)
+            {
+                rentals = null;
+                return rentals;
+            }
+
+            rentals.Movies.Add(movies);
+            _rentalDBContext.SaveChangesAsync();
+
+            return rentals;
         }
     }
 }

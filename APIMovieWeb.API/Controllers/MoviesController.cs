@@ -10,11 +10,14 @@ namespace APIMovieWeb.API.Controllers
     [ApiController]
     public class MoviesController : ControllerBase
     {
+        private string className = typeof(MembersController).Name;
+        private readonly ILogger _logger;
         private readonly IMovieService _movieService;
 
-        public MoviesController(IMovieService movieService)
+        public MoviesController(IMovieService movieService, ILogger<MembersController> logger)
         {
             _movieService = movieService;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -28,10 +31,12 @@ namespace APIMovieWeb.API.Controllers
                     return NotFound("No movies found. Register first to consult!");
                 }
 
+                _logger.LogInformation($"{className} - GetAllMovies - Sucess.");
                 return Ok(moviesFromService);
             }
             catch (Exception ex)
             {
+                _logger.LogError($"{className} - GetAllMovies - Ex: {ex}.");
                 return StatusCode(501, $"Internal Failure. Try again later. Error => {ex}");
             }
             
@@ -52,10 +57,12 @@ namespace APIMovieWeb.API.Controllers
                     return NotFound("No movies found by ID. Register first to consult!");
                 }
 
+                _logger.LogInformation($"{className} - GetMovieById - Sucess.");
                 return Ok(moviesFromService);
             }
             catch (Exception ex)
             {
+                _logger.LogError($"{className} - GetMovieById - Ex: {ex}.");
                 return StatusCode(501, $"Internal Failure. Try again later. Error => {ex}");
             }
 
@@ -84,10 +91,12 @@ namespace APIMovieWeb.API.Controllers
                     return BadRequest("Failed to create new movie. Try again later!");
                 }
 
+                _logger.LogInformation($"{className} - CreateMovie - Sucess.");
                 return StatusCode(201, movieFromService);
             }
             catch (Exception ex)
             {
+                _logger.LogError($"{className} - CreateMovie - Ex: {ex}.");
                 return StatusCode(501, $"Internal Failure. Try again later. Error => {ex}");
             }
         }
@@ -119,10 +128,12 @@ namespace APIMovieWeb.API.Controllers
                     return BadRequest("Failed to update movie. Please check the ID is correct and try again later!");
                 }
 
+                _logger.LogInformation($"{className} - UpdateMovie - Sucess.");
                 return Ok(movieFromService);
             }
             catch (Exception ex)
             {
+                _logger.LogError($"{className} - UpdateMovie - Ex: {ex}.");
                 return StatusCode(501, $"Internal Failure. Try again later. Error => {ex}");
             }
         }
@@ -143,10 +154,12 @@ namespace APIMovieWeb.API.Controllers
                     return BadRequest("Movie deletion failed. Please check the ID is correct and try again later!");
                 }
 
+                _logger.LogInformation($"{className} - DeleteMovie - Sucess.");
                 return Ok(movieFromService);
             }
             catch (Exception ex)
             {
+                _logger.LogError($"{className} - DeleteMovie - Ex: {ex}.");
                 return StatusCode(501, $"Internal Failure. Try again later. Error => {ex}");
             }
         }

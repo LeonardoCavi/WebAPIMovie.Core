@@ -24,7 +24,7 @@ namespace APIMovie.Infrastructure.Repository
         public List<Member> GetAllMembers()
         {
             var members = _memberDBContext.Members
-                .Include(m => m.Rentals)
+                //.Include(m => m.Rentals)
                 .ToList();
             return members;
         }
@@ -33,7 +33,7 @@ namespace APIMovie.Infrastructure.Repository
         {
             var members = _memberDBContext.Members
                 .Where(m => m.MemberId == id)
-                .Include(m => m.Rentals)
+                //.Include(m => m.Rentals)
                 .ToList();
 
             return members;

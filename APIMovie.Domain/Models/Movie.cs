@@ -14,6 +14,7 @@ namespace APIMovie.Domain.Models
         [Required]
         public int RentalDuration { get; set; } = 0;
 
+        [JsonIgnore]
         //Many to Many Relationship
         public List<Rental> Rentals { get; set; }
     }

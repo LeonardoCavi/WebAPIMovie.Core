@@ -15,8 +15,8 @@ namespace APIMovie.Domain.Models
         [EmailAddress(ErrorMessage = "Invalid e-mail.")]
         public string MemberEmail { get; set; } = string.Empty;
 
-        // Linking - Member - Rentals (1:N)
         [JsonIgnore]
+        // Linking - Member - Rentals (1:N)
         public List<Rental> Rentals { get; set; }
     }
 }

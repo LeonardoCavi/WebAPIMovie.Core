@@ -1,4 +1,5 @@
-﻿using APIMovie.Domain.Models;
+﻿using APIMovie.Domain.DTO;
+using APIMovie.Domain.Models;
 
 namespace APIMovie.Application.Intefaces
 {
@@ -7,5 +8,6 @@ namespace APIMovie.Application.Intefaces
         List<Rental> GetAllRentals();
         List<Rental> GetRentalById(int id);
         Rental CreateRental(Rental rental);
+        Rental AddRentalMovie(MovieRentalDTO request);
     }
 }

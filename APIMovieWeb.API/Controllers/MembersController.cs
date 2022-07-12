@@ -9,11 +9,14 @@ namespace APIMovieWeb.API.Controllers
     [ApiController]
     public class MembersController : ControllerBase
     {
+        private string className = typeof(MembersController).Name;
+        private readonly ILogger _logger;
         private readonly IMemberService _memberService;
 
-        public MembersController(IMemberService memberService)
+        public MembersController(IMemberService memberService, ILogger<MembersController> logger)
         {
             _memberService = memberService;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -27,10 +30,12 @@ namespace APIMovieWeb.API.Controllers
                     return NotFound("No members found. Register first to consult!");
                 }
 
+                _logger.LogInformation($"{className} - GetAllMembers - Sucess.");
                 return Ok(memberFromService);
             }
             catch (Exception ex)
             {
+                _logger.LogError($"{className} - GetAllMembers - Ex: {ex}.");
                 return StatusCode(501, $"Internal Failure. Try again later. Error => {ex}");
             }
         }
@@ -50,10 +55,12 @@ namespace APIMovieWeb.API.Controllers
                     return NotFound("No members found by ID. Register first to consult!");
                 }
 
+                _logger.LogInformation($"{className} - GetMemberById(MemberId) - Sucess.");
                 return Ok(memberFromService);
             }
             catch (Exception ex)
             {
+                _logger.LogError($"{className} - GetMemberById(MemberId) - Ex: {ex}.");
                 return StatusCode(501, $"Internal Failure. Try again later. Error => {ex}");
             }
         }
@@ -81,10 +88,12 @@ namespace APIMovieWeb.API.Controllers
                     return BadRequest("Failed to create new member. Try again later!");
                 }
 
+                _logger.LogInformation($"{className} - CreateMember(member) - Sucess.");
                 return StatusCode(201, memberFromService);
             }
             catch (Exception ex)
             {
+                _logger.LogError($"{className} - CreateMember(member) - Ex: {ex}.");
                 return StatusCode(501, $"Internal Failure. Try again later. Error => {ex}");
             }
         }
@@ -116,10 +125,12 @@ namespace APIMovieWeb.API.Controllers
                     return BadRequest("Failed to update member. Please check the ID is correct and try again later!");
                 }
 
+                _logger.LogInformation($"{className} - UpdateMember(MemberId, member) - Sucess.");
                 return Ok(memberFromService);
             }
             catch (Exception ex)
             {
+                _logger.LogError($"{className} - UpdateMember(MemberId, member) - Ex: {ex}.");
                 return StatusCode(501, $"Internal Failure. Try again later. Error => {ex}");
             }
         }
@@ -140,10 +151,12 @@ namespace APIMovieWeb.API.Controllers
                     return BadRequest("Member deletion failed. Please check the ID is correct and try again later!");
                 }
 
+                _logger.LogInformation($"{className} - DeleteMember(MemberId) - Sucess.");
                 return Ok(memberFromService);
             }
             catch (Exception ex)
             {
+                _logger.LogError($"{className} - DeleteMember(MemberId) - Ex: {ex}.");
                 return StatusCode(501, $"Internal Failure. Try again later. Error => {ex}");
             }
         }

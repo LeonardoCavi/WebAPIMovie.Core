@@ -1,4 +1,5 @@
 ﻿using APIMovie.Application.Intefaces;
+using APIMovie.Domain.DTO;
 using APIMovie.Domain.Models;
 
 namespace APIMovie.Application.Services
@@ -27,6 +28,12 @@ namespace APIMovie.Application.Services
         public Rental CreateRental(Rental rental)
         {
             var rentals = _rentalRepository.CreateRental(rental);
+            return rentals;
+        }
+
+        public Rental AddRentalMovie(MovieRentalDTO request)
+        {
+            var rentals = _rentalRepository.AddRentalMovie(request);
             return rentals;
         }
     }
